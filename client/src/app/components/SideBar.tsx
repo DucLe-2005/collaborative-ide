@@ -29,18 +29,25 @@ function Sidebar({
 			>
 				{/* Resize handle */}
                 <div className="flex flex-col gap-2 mx-3 my-5" >
-                    <Link href="/" className="flex items-center gap-2">
-                        <House className="w-5 h-5" />
-                        <span>Home</span>
-                    </Link>
-                    <Link href="/Apps" className="flex items-center gap-2">
-                        <Folder className="w-5 h-5" />
-                        <span>Apps</span>
-                    </Link>
-                    <Link href="/Teams" className="flex items-center gap-2">
-                        <Users className="w-5 h-5" />
-                        <span>Teams</span>
-                    </Link>
+					
+                    <button className="w-full hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+                        <Link href="/" className="flex items-center gap-2 p-2">
+                            <House className="w-5 h-5" />
+                            <span>Home</span>
+                        </Link>
+                    </button>
+                    <button className="w-full hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+                        <Link href="/Apps" className="flex items-center gap-2 p-2">
+                            <Folder className="w-5 h-5" />
+                            <span>Apps</span>
+                        </Link>
+                    </button>
+                    <button className="w-full hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200">
+                        <Link href="/Teams" className="flex items-center gap-2 p-2">
+                            <Users className="w-5 h-5" />
+                            <span>Teams</span>
+                        </Link>
+                    </button>
                 </div>
 			</aside>
 			{/* Main Content Wrapper */}

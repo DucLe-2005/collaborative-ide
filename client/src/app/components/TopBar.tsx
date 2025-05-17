@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Bell, Settings, User } from "lucide-react";
+import { Bell, Settings, User, LogOut, Users } from "lucide-react";
+import Link from "next/link";
 
 interface TopBarProps {
   sidebarOpen: boolean;
@@ -11,6 +12,8 @@ interface TopBarProps {
 export default function TopBar({ sidebarOpen, setSidebarOpen }: TopBarProps) {
   const [hasHovered, setHasHovered] = React.useState(false);
   const [indicator, setIndicator] = React.useState("w-[20%]");
+  const [open, setOpen] = React.useState(false);
+  const menuRef = React.useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
     setSidebarOpen(!sidebarOpen);
@@ -79,9 +82,45 @@ export default function TopBar({ sidebarOpen, setSidebarOpen }: TopBarProps) {
           <button className="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
             <Settings className="w-5 h-5" />
           </button>
-          <button className="p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-            <User className="w-5 h-5" />
-          </button>
+          <div className="relative" ref={menuRef}>
+            <button
+              className={`flex items-center justify-center w-8 h-8 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg`}
+              onClick={() => setOpen(!open)}
+            >
+              <User className="w-5 h-5" />
+              
+            </button>
+            {open && (
+              <div className="absolute right-0 mt-2 w-56 bg-gray-800 text-white rounded-xl shadow-lg py-2 z-50">
+                <Link
+                  href="/account"
+                  className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700 transition rounded-lg"
+                >
+                  <Settings className="w-5 h-5" />
+                  Account
+                </Link>
+                <Link
+                  href="/profile"
+                  className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700 transition rounded-lg"
+                >
+                  <User className="w-5 h-5" />
+                  Profile
+                </Link>
+                <Link
+                  href="/create-team"
+                  className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700 transition rounded-lg"
+                >
+                  <Users className="w-5 h-5" />
+                  Create Team
+                </Link>
+                <div className="border-t border-gray-700 my-2"></div>
+                <button className="flex items-center gap-3 px-4 py-2 w-full hover:bg-gray-700 transition rounded-lg text-left">
+                  <LogOut className="w-5 h-5" />
+                  Log out
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
